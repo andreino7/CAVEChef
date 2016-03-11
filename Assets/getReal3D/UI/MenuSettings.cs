@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Xml;
 using System;
-using getReal3D;
+//using getReal3D;
 
 public class MenuSettings : MonoBehaviour {
 
