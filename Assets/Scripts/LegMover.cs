@@ -36,6 +36,7 @@ public class LegMover : MonoBehaviour {
 	Vector3 hipToLeftLeg;
 	float rightTightLength;
 	float leftTightLength;
+	float hipsLength;
 
 	// Use this for initialization
 	void Start () {
@@ -54,6 +55,7 @@ public class LegMover : MonoBehaviour {
 
 		rightTightLength = (rightKnee.transform.position - rightUpLeg.transform.position).magnitude;
 		leftTightLength = (leftKnee.transform.position - leftUpLeg.transform.position).magnitude;
+		hipsLength = (rightUpLeg.transform.position - leftUpLeg.transform.position).magnitude;
 
 	}
 	
@@ -90,8 +92,13 @@ public class LegMover : MonoBehaviour {
 			//knee.transform.localScale *= (knee.transform.position - rightUpLeg.transform.position).magnitude / rightTightLength;
 			rightKnee.transform.localScale = new Vector3(1f,(rightKnee.transform.position - rightUpLeg.transform.position).magnitude / rightTightLength, 1f);
 			leftKnee.transform.localScale = new Vector3(1f,(leftKnee.transform.position - leftUpLeg.transform.position).magnitude / leftTightLength, 1f);
+			transform.localScale = new Vector3((rightUpLeg.transform.position - leftUpLeg.transform.position).magnitude / hipsLength,1f,1f);
 
 			trigger = false;
 		}
+	}
+
+	public void SetTrigger() {
+		trigger = true;
 	}
 }
