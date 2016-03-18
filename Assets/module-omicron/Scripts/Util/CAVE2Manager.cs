@@ -733,10 +733,10 @@ public class CAVE2Manager : OmicronEventClient {
 			wand1.UpdateMocap( getReal3D.Input.wand.position, getReal3D.Input.wand.rotation );
 			//Debug.Log("Knee: "+getReal3D.Input.GetSensor("KneeRx").position);
 			//Debug.Log("Foot: " + getReal3D.Input.GetSensor("FootRx").position);
-			Debug.Log("right up leg: " + getReal3D.Input.GetSensor("UpperLegRx").position);
-			Debug.Log ("inizio");
+			//Debug.Log("right up leg: " + getReal3D.Input.GetSensor("UpperLegRx").position);
+			//Debug.Log ("inizio");
 			foreach(getReal3D.Sensor s in getReal3D.Input.sensors) {
-				Debug.Log(s.position);
+//				Debug.Log(s.position);
 			}
 
 			#endif

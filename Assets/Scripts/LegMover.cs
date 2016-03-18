@@ -13,6 +13,7 @@ public class LegMover : MonoBehaviour {
 	public Quaternion rightKneeRotationOffset;
 	public Quaternion rightLegRotationOffset;
 	public Quaternion rightFootRotationOffset;
+	public Quaternion hipRotationOffset;
 	public Vector3 rightKneeTranslationOffset;
 	public Vector3 rightLegTranslationOffset;
 	public Vector3 rightFootTranslationOffset;
@@ -29,9 +30,13 @@ public class LegMover : MonoBehaviour {
 	Quaternion rightKneeRotationTarget;
 	Quaternion rightLegRotationTarget;
 	Quaternion rightFootRotationTarget;
+
+	Quaternion hipRotationTarget;
+
 	Quaternion leftKneeRotationTarget;
 	Quaternion leftLegRotationTarget;
 	Quaternion leftFootRotationTarget;
+
 	Vector3 hipToRightLeg;
 	Vector3 hipToLeftLeg;
 	float rightTightLength;
@@ -45,6 +50,8 @@ public class LegMover : MonoBehaviour {
 		rightLegRotationTarget = rightUpLeg.transform.localRotation;
 		rightKneeRotationTarget = rightKnee.transform.rotation;
 		rightFootRotationTarget = rightFoot.transform.rotation;
+
+		hipRotationTarget = hips.transform.rotation;
 
 		leftLegRotationTarget = leftUpLeg.transform.localRotation;
 		leftKneeRotationTarget = leftKnee.transform.rotation;
@@ -68,6 +75,8 @@ public class LegMover : MonoBehaviour {
 		rightUpLeg.transform.position = getReal3D.Input.GetSensor("UpperLegRx").position;
 		rightUpLeg.transform.rotation = getReal3D.Input.GetSensor("UpperLegRx").rotation * rightLegRotationOffset;
 
+
+
 		leftKnee.transform.position = getReal3D.Input.GetSensor("KneeLx").position;
 		leftKnee.transform.rotation = getReal3D.Input.GetSensor("KneeLx").rotation * leftKneeRotationOffset;
 		leftFoot.transform.position = getReal3D.Input.GetSensor("FootLx").position;
@@ -75,6 +84,8 @@ public class LegMover : MonoBehaviour {
 		leftUpLeg.transform.position = getReal3D.Input.GetSensor("UpperLegLx").position;
 		leftUpLeg.transform.rotation = getReal3D.Input.GetSensor("UpperLegLx").rotation * leftLegRotationOffset;
 		hips.transform.position = rightUpLeg.transform.position + hipToRightLeg;
+		hips.transform.rotation = Quaternion.Euler(new Vector3(hips.transform.rotation.x,(getReal3D.Input.GetSensor("UpperLegRx").rotation * hipRotationOffset).eulerAngles.y,270));
+
 
 		//knee.transform.LookAt(foot.transform);
 
@@ -84,6 +95,7 @@ public class LegMover : MonoBehaviour {
 			rightKneeRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("KneeRx").rotation) * rightKneeRotationTarget;
 			rightFootRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("FootRx").rotation) * rightFootRotationTarget;
 			rightLegRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("UpperLegRx").rotation) * rightLegRotationTarget;
+			hipRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("UpperLegRx").rotation) * hipRotationTarget;
 
 			leftKneeRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("KneeLx").rotation) * leftKneeRotationTarget;
 			leftFootRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("FootLx").rotation) * leftFootRotationTarget;
