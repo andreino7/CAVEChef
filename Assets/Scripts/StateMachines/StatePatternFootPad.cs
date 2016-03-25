@@ -4,10 +4,10 @@ using System.Collections;
 public class StatePatternFootPad : MonoBehaviour {
 
     public bool rightLegNext = true;
-    public float stepRight = 0.025f;
-    public float stepLeft = -0.025f;
-    public float stepFront = 0.022f;
-    public float stepBack = -0.022f;
+    public float stepRight = 10.0f;
+    public float stepLeft = -10.0f;
+    public float stepFront = 10.0f;
+    public float stepBack = -10.0f;
     [HideInInspector] public IFootPadState currentState;
     [HideInInspector] public RightState rightState;
     [HideInInspector] public LeftState leftState;

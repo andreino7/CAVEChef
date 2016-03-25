@@ -30,6 +30,7 @@ public class RightState : IFootPadState
             ToBackState();
         }
         footPad.toggleLeg();
+		moved = false;
     }
     public void ToRightState()
     {
