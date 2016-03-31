@@ -72,8 +72,8 @@ public class LegMover : MonoBehaviour {
 		rightKnee.transform.rotation = getReal3D.Input.GetSensor("KneeRx").rotation * rightKneeRotationOffset;
 		rightFoot.transform.position = getReal3D.Input.GetSensor("FootRx").position;
 		rightFoot.transform.rotation = getReal3D.Input.GetSensor("FootRx").rotation * rightFootRotationOffset;
-		rightUpLeg.transform.position = getReal3D.Input.GetSensor("UpperLegRx").position;
-		rightUpLeg.transform.rotation = getReal3D.Input.GetSensor("UpperLegRx").rotation * rightLegRotationOffset;
+		rightUpLeg.transform.position = getReal3D.Input.GetSensor("LegRx").position;
+		rightUpLeg.transform.rotation = getReal3D.Input.GetSensor("LegRx").rotation * rightLegRotationOffset;
 
 
 
@@ -81,10 +81,10 @@ public class LegMover : MonoBehaviour {
 		leftKnee.transform.rotation = getReal3D.Input.GetSensor("KneeLx").rotation * leftKneeRotationOffset;
 		leftFoot.transform.position = getReal3D.Input.GetSensor("FootLx").position;
 		leftFoot.transform.rotation = getReal3D.Input.GetSensor("FootLx").rotation * leftFootRotationOffset;
-		leftUpLeg.transform.position = getReal3D.Input.GetSensor("UpperLegLx").position;
-		leftUpLeg.transform.rotation = getReal3D.Input.GetSensor("UpperLegLx").rotation * leftLegRotationOffset;
+		leftUpLeg.transform.position = getReal3D.Input.GetSensor("LegLx").position;
+		leftUpLeg.transform.rotation = getReal3D.Input.GetSensor("LegLx").rotation * leftLegRotationOffset;
 		hips.transform.position = rightUpLeg.transform.position + hipToRightLeg;
-		hips.transform.rotation = Quaternion.Euler(new Vector3(hips.transform.rotation.x,(getReal3D.Input.GetSensor("UpperLegRx").rotation * hipRotationOffset).eulerAngles.y,270));
+		hips.transform.rotation = Quaternion.Euler(new Vector3(hips.transform.rotation.x,(getReal3D.Input.GetSensor("LegRx").rotation * hipRotationOffset).eulerAngles.y,270));
 
 
 		//knee.transform.LookAt(foot.transform);
@@ -94,12 +94,12 @@ public class LegMover : MonoBehaviour {
 		if(trigger) {
 			rightKneeRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("KneeRx").rotation) * rightKneeRotationTarget;
 			rightFootRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("FootRx").rotation) * rightFootRotationTarget;
-			rightLegRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("UpperLegRx").rotation) * rightLegRotationTarget;
-			hipRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("UpperLegRx").rotation) * hipRotationTarget;
+			rightLegRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("LegRx").rotation) * rightLegRotationTarget;
+			hipRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("LegRx").rotation) * hipRotationTarget;
 
 			leftKneeRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("KneeLx").rotation) * leftKneeRotationTarget;
 			leftFootRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("FootLx").rotation) * leftFootRotationTarget;
-			leftLegRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("UpperLegLx").rotation) * leftLegRotationTarget;
+			leftLegRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("LegLx").rotation) * leftLegRotationTarget;
 
 			//knee.transform.localScale *= (knee.transform.position - rightUpLeg.transform.position).magnitude / rightTightLength;
 			rightKnee.transform.localScale = new Vector3(1f,(rightKnee.transform.position - rightUpLeg.transform.position).magnitude / rightTightLength, 1f);

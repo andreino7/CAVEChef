@@ -14,9 +14,14 @@
   <map_tracker index="2" name="Wand" />
   <map_tracker index="4" name="KneeRx" />
   <map_tracker index="5" name="FootRx" />
-  <map_tracker index="7" name="UpperLegRx" />
-  <map_tracker index="8" name="FootLx" />
-  <map_tracker index="9" name="UpperLegLx" />
-  <map_tracker index="10" name="KneeLx" />
-
+  <map_tracker index="6" name="LegRx" />
+  <map_tracker index="7" name="FootLx" />
+  <map_tracker index="8" name="KneeLx" />
+  <map_tracker index="9" name="LegLx" />
+  <map_tracker index="10" name="WristRx" />
+  <map_tracker index="11" name="ElbowRx" />
+  <map_tracker index="12" name="ShoulderRx" />
+  <map_tracker index="13" name="WristLx" />
+  <map_tracker index="14" name="ElbowLx" />
+  <map_tracker index="15" name="ShoulderLx" />
 </unity>

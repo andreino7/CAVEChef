@@ -40,7 +40,7 @@ public class StoveCookGame : MonoBehaviour {
 			if (!cooked) {
 				cooked = true;
 				Destroy (duringCooking);
-				cookedObject.SetActive (false);
+				cookedObject.SetActive (true);
 				CaveChefGameController.GetController ().showMessage (readyMsg);
 			}
 		}
