@@ -18,7 +18,7 @@ public class MovableObject : MonoBehaviour {
 			//transform.localScale = transform.localScale * 1.5;
 			transform.parent = other.gameObject.transform;
 			GetComponent<Rigidbody>().isKinematic = true;
-			GameController.instance.showCabinet();
+//			GameController.instance.showCabinet();
 		}
 		if (other.gameObject.CompareTag("GoalObject")){	
 			//transform.localScale = transform.localScale * 1.5;

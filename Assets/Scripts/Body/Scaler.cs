@@ -16,7 +16,7 @@ public class Scaler : MonoBehaviour {
 	public void UpdateScale() {
 		if(scaleTarget!=null && isActiveAndEnabled) {
 			float scale = (transform.parent.transform.position - scaleTarget.transform.parent.transform.position).magnitude / length;
-			GameObject pointer = Instantiate(new GameObject());
+			GameObject pointer = new GameObject();
 			pointer.transform.parent = transform.parent;
 			pointer.transform.position = transform.position;
 			pointer.transform.LookAt(scaleTarget.transform);

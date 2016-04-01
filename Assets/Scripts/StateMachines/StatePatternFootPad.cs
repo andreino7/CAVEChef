@@ -3,6 +3,9 @@ using System.Collections;
 
 public class StatePatternFootPad : MonoBehaviour {
 
+	int stepCount= 0;
+	int nOfSteps = 2;
+	public string startGameDialog;
     public bool rightLegNext = true;
     public float stepRight = 0.2f;
     public float stepLeft = -0.2f;
@@ -26,6 +29,7 @@ public class StatePatternFootPad : MonoBehaviour {
 	void Start () {
         currentState = leftState;
         rightLegNext = true;
+		CaveChefGameController.GetController ().showMessage (startGameDialog);
     }
 	
 	// Update is called once per frame
@@ -35,7 +39,17 @@ public class StatePatternFootPad : MonoBehaviour {
 
     private void OnTriggerEnter (Collider other)
     {
-        currentState.OnTriggerEnter(other);
+		Debug.Log (other.gameObject.tag);
+		if(other.gameObject.CompareTag("FootPadPresser")) {
+			stepCount++;
+			if (stepCount > nOfSteps){
+				CaveChefGameController.GetController().nextLevel();	
+				CaveChefGameController.GetController().AddPoints(10);
+				Destroy(gameObject);
+			}else{
+        		currentState.OnTriggerEnter(other);
+			}
+		}
     }
 
     public void toggleLeg()

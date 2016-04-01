@@ -9,7 +9,9 @@ public class CaveChefGameController : MonoBehaviour {
 	public Text messagePanel;
 	public Text scoreText;
 	public Text timeText;
-	private float time = 90f;
+	public Text gameOverText;
+	public GameObject panel;
+	private float time = 120f;
 	private int score = 0;
 
 	private int level = 0;
@@ -36,6 +38,10 @@ public class CaveChefGameController : MonoBehaviour {
 	private void UpdateTime() {
 		time -= Time.deltaTime;
 		timeText.text = "TIME: " + (int) time;
+		if(time <= 0) {
+			gameOverText.gameObject.SetActive(true);
+			panel.SetActive(true);
+		}
 	}
 
 	public void showMessage(string msg){

@@ -8,10 +8,14 @@ public class GoalBringGameScript : MonoBehaviour {
 	public string endGameDialog = "Good Job!";
 	public GameObject before;
 	public GameObject after;
+	public GameObject[] obstacles;
 
 	// Use this for initialization
 	void Start () {
 		CaveChefGameController.GetController ().showMessage (startGameDialog);
+		foreach(GameObject g in obstacles) {
+			g.SetActive(true);
+		}
 	}
 	
 	// Update is called once per frame

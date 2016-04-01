@@ -36,6 +36,7 @@ public class DeadReackoning : MonoBehaviour {
 		m_Journey = Vector3.Distance (transform.position, m_EndPosition); 
 		//Debug.Log("journey" + m_Journey);
 		m_CurrentTime = Time.time;
+		Destroy(gameObject,5f);
 	}
 	
 	// Update is called once per frame
@@ -63,6 +64,12 @@ public class DeadReackoning : MonoBehaviour {
 		//float fracJourney = distCovered / m_Journey;
 		//Debug.Log(fracJourney);
 		//transform.position = Vector3.Lerp (m_StartPosition, m_EndPosition, fracJourney);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.CompareTag("Ethan")) {
+			CaveChefGameController.GetController().AddPoints(-5);
+		}
 	}
 
 
