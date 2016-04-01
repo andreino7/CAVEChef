@@ -11,8 +11,17 @@ public class debugSphere : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        float moveH = Input.GetAxis("Horizontal");
-        float moveV = Input.GetAxis("Vertical");
+        float moveH = 0.0f;
+        if (Input.GetKey("h"))
+        {
+            moveH = 2.0f;
+        }
+
+        float moveV = 0.0f;
+        if (Input.GetKey("v"))
+        {
+            moveV = 2.0f;
+        }
         r.velocity = 10f * new Vector3(moveH, 0.0f, moveV);
 	}
 }
