@@ -26,8 +26,15 @@ public class BodyMover : MonoBehaviour {
 			foreach(BodyPart b in bodyParts) {
 				b.ComputeOffset();
 			}
+			foreach(BodyPart b in bodyParts) {
+				b.UpdateScale();
+			}
+
 			triggerBody = false;
 		}
+	/*	foreach(GameObject g in GameObject.FindGameObjectsWithTag("Shoulders")) {
+			g.GetComponent<Scaler>().UpdateScale();
+		}*/
 	}
 
 	public void SetTrigger() {

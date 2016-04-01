@@ -23,6 +23,9 @@ public class BodyPart {
 	}
 
 	public void UpdateScale() {
+		if(!scaler) {
+			Debug.Log(sensor);
+		}
 		scaler.UpdateScale();
 	}
 

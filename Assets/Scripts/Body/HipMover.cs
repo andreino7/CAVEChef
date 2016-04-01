@@ -18,7 +18,7 @@ public class HipMover : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = rightLeg.transform.position + hipToRightLeg;
-		transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x,(getReal3D.Input.GetSensor("LegRx").rotation * hipRotationOffset).eulerAngles.y,270));
+		//transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x,(getReal3D.Input.GetSensor("LegRx").rotation * hipRotationOffset).eulerAngles.y,270));
 		if(trigger) {
 			trigger = false;
 			hipRotationOffset = Quaternion.Inverse(getReal3D.Input.GetSensor("LegRx").rotation) * targetRotation;

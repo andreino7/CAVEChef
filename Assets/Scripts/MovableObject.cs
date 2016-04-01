@@ -14,7 +14,7 @@ public class MovableObject : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("Ethan")){	
+		if (other.gameObject.CompareTag("Gabber")){	
 			//transform.localScale = transform.localScale * 1.5;
 			transform.parent = other.gameObject.transform;
 			GetComponent<Rigidbody>().isKinematic = true;

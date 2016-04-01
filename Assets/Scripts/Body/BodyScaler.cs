@@ -9,10 +9,10 @@ public class BodyScaler : MonoBehaviour {
 	private float hipsLength;
 
 	void Start() {
-		hipsLength = (rightLeg.transform.position - leftLeg.transform.position).magnitude;
+		hipsLength = (rightLeg.transform.parent.transform.position - leftLeg.transform.parent.transform.position).magnitude;
 	}
 	// Use this for initialization
 	public void ScaleBody() {
-		transform.localScale = new Vector3((rightLeg.transform.position - leftLeg.transform.position).magnitude / hipsLength,1f,1f);
+		transform.localScale = new Vector3( (rightLeg.transform.parent.transform.position - leftLeg.transform.parent.transform.position).magnitude / hipsLength,1f,1f);
 	}
 }

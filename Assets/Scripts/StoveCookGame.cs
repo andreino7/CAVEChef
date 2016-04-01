@@ -18,7 +18,9 @@ public class StoveCookGame : MonoBehaviour {
 	private float cookDuration = 0;
 	private bool cooking = false;
 	private bool cooked = false;
-
+	private int damage = -5;
+	private float damageInterval = 5f;
+	private float lastBurned = 0f;
 
 
 	// Use this for initialization
@@ -36,6 +38,10 @@ public class StoveCookGame : MonoBehaviour {
 
 		if (cookDuration > cookTime + burnTime) {
 			CaveChefGameController.GetController ().showMessage (burnMsg);
+			if(Time.time > lastBurned + damageInterval) {
+				lastBurned = Time.time;
+				CaveChefGameController.GetController ().AddPoints (damage);
+			}
 		}else if (cookDuration > cookTime) {
 			if (!cooked) {
 				cooked = true;
@@ -55,6 +61,7 @@ public class StoveCookGame : MonoBehaviour {
 			CaveChefGameController.GetController ().showMessage (onStoveDialog + Mathf.Floor(cookTime/1) + " sec");
 			cooking = true;
 			cookDuration = 0;
+			CaveChefGameController.GetController ().AddPoints(damage*-1);
 		}
 	}
 }

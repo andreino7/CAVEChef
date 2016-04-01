@@ -6,13 +6,14 @@
   <map_button name="WandLook" index="5" />
   <map_button name="NavSpeed" index="6" />
   <map_button name="WandDrive" index="7" />
+  <map_button name="Unknown" />
   <map_valuator name="Yaw" index="1" positive_key="VK_Q" negative_key="VK_E" dead_zone="0.1" axis="JOYSTICK_THUMB_RX" />
   <map_valuator name="Forward" index="2" unity_axis="Vertical" positive_key="VK_W" negative_key="VK_S" dead_zone="0.1" axis="JOYSTICK_THUMB_LY" />
   <map_valuator name="Strafe" index="3" unity_axis="Horizontal" positive_key="VK_D" negative_key="VK_A" dead_zone="0.1" axis="JOYSTICK_THUMB_LX" />
   <map_valuator name="Pitch" index="4" dead_zone="0.1" axis="JOYSTICK_THUMB_RY" />
   <map_tracker name="Head" index="1" />
-  <map_tracker name="Wand" index="2" />
-  <map_tracker name="KneeRx" index="4" />
+  <map_tracker name="Wand" index="3" />
+  <map_tracker name="a" index="4" />
   <map_tracker name="FootRx" index="5" />
   <map_tracker name="LegRx" index="6" />
   <map_tracker name="FootLx" index="7" />
@@ -20,8 +21,9 @@
   <map_tracker name="LegLx" index="9" />
   <map_tracker name="WristRx" index="10" />
   <map_tracker name="ElbowRx" index="11" />
-  <map_tracker name="ShoulderRx" index="12" />
-  <map_tracker name="WristLx" index="13" />
+  <map_tracker name="b" index="12" />
+  <map_tracker name="KneeRx" index="13" />
   <map_tracker name="ElbowLx" index="14" />
   <map_tracker name="ShoulderLx" index="15" />
+  <map_tracker name="Robin" index="16" />
 </unity>

@@ -7,6 +7,10 @@ public class CaveChefGameController : MonoBehaviour {
 	private static CaveChefGameController instance;
 	public GameObject[] levels;
 	public Text messagePanel;
+	public Text scoreText;
+	public Text timeText;
+	private float time = 90f;
+	private int score = 0;
 
 	private int level = 0;
 
@@ -22,13 +26,16 @@ public class CaveChefGameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		UpdateTime();
 	}
 
 	public static CaveChefGameController GetController(){
-		
-
 		return instance;
+	}
+
+	private void UpdateTime() {
+		time -= Time.deltaTime;
+		timeText.text = "TIME: " + (int) time;
 	}
 
 	public void showMessage(string msg){
@@ -38,6 +45,15 @@ public class CaveChefGameController : MonoBehaviour {
 	public void nextLevel(){
 		level += 1;
 		levels [level].SetActive (true);
+	}
+
+	public void AddPoints(int points) {
+		score += points;
+		UpdateScore();
+	}
+
+	private void UpdateScore() {
+		scoreText.text = "SCORE: " + score;
 	}
 
 
