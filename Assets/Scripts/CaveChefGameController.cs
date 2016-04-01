@@ -11,6 +11,8 @@ public class CaveChefGameController : MonoBehaviour {
 	public Text timeText;
 	public Text gameOverText;
 	public GameObject panel;
+	public Text welcomeText;
+	public GameObject welcomePanel;
 	private float time = 120f;
 	private int score = 0;
 
@@ -23,6 +25,8 @@ public class CaveChefGameController : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		Destroy (welcomePanel, 5);
+		Destroy (welcomeText.gameObject, 5);
 		levels [level].SetActive (true);
 	}
 	

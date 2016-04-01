@@ -29,7 +29,7 @@ public class TriggerBody : MonoBehaviour {
 
 		if(CAVE2Manager.GetButtonDown(1, CAVE2Manager.Button.Button2)) {
 			if (getRealUpdater){
-				getRealUpdater.UpdateCameraFromWand();
+				//getRealUpdater.UpdateCameraFromWand();
 			}
 		}
 	}
