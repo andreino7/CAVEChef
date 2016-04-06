@@ -13,8 +13,13 @@ public class CaveChefGameController : MonoBehaviour {
 	public GameObject panel;
 	public Text welcomeText;
 	public GameObject welcomePanel;
+	public AudioSource littleWinSound;
+	public AudioSource timerCountDownSound;
+
+	private bool countdown = false;
 	private float time = 120f;
 	private int score = 0;
+
 
 	private int level = 0;
 
@@ -42,9 +47,14 @@ public class CaveChefGameController : MonoBehaviour {
 	private void UpdateTime() {
 		time -= Time.deltaTime;
 		timeText.text = "TIME: " + (int) time;
+		if (time <= 10 && !countdown) {
+			countdown = true;
+			timerCountDownSound.Play ();
+		}
 		if(time <= 0) {
 			gameOverText.gameObject.SetActive(true);
 			panel.SetActive(true);
+			timerCountDownSound.Stop ();
 		}
 	}
 
@@ -53,8 +63,10 @@ public class CaveChefGameController : MonoBehaviour {
 	}
 
 	public void nextLevel(){
+		littleWinSound.Play ();
 		level += 1;
 		levels [level].SetActive (true);
+
 	}
 
 	public void AddPoints(int points) {

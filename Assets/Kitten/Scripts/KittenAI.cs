@@ -9,6 +9,7 @@ public class KittenAI : MonoBehaviour {
 	Animation an;
 	CatState state;
 	Rigidbody rb;
+	public AudioSource meowSound;
 	//float catSpeed = 3f;
 
 	// Use this for initialization
@@ -28,12 +29,13 @@ public class KittenAI : MonoBehaviour {
 
 		if (state.time > state.dur) {
 			state = state.next ();
-
+			if (state.current == "Meow") {
+				meowSound.Play ();
+			}
 			if (state.current == "Walk") {
 				
 				rb.velocity = new Vector3 (-0.5f + UnityEngine.Random.value, 0, -0.5f + UnityEngine.Random.value).normalized;
 
-				Debug.Log (rb.velocity);
 				transform.forward = rb.velocity;
 			} else {
 				rb.velocity = Vector3.zero;
@@ -116,7 +118,6 @@ public class CatState{
 		float ran = UnityEngine.Random.value;
 		float cumulative = 0;
 
-		Debug.Log (old + current);
 		NextState[] possibilities = ProbTable.probabilities [new PrecStates (old, current)];
 
 		int i = 0;
@@ -141,6 +142,7 @@ public class CatState{
 		an = a;
 		dur = an [state].length;
 		an.Play (state);
+
 	}
 
 

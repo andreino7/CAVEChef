@@ -10,6 +10,8 @@ public class StoveCookGame : MonoBehaviour {
 	public string onStoveDialog = "Good Job, it will take ";
 	public string readyMsg = "The Object is cooked";
 	public string burnMsg = "The Object is burning";
+	public AudioSource stoveSound;
+	public AudioSource objectReadySound;
 
 	public int cookTime = 60;
 	public int burnTime = 30;
@@ -44,6 +46,7 @@ public class StoveCookGame : MonoBehaviour {
 			}
 		}else if (cookDuration > cookTime) {
 			if (!cooked) {
+				objectReadySound.Play ();
 				cooked = true;
 				Destroy (duringCooking);
 				cookedObject.SetActive (true);
@@ -62,6 +65,7 @@ public class StoveCookGame : MonoBehaviour {
 			cooking = true;
 			cookDuration = 0;
 			CaveChefGameController.GetController ().AddPoints(damage*-1);
+			stoveSound.Play ();
 		}
 	}
 }
