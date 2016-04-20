@@ -12,11 +12,12 @@ public class StoveCookGame : MonoBehaviour {
 	public string burnMsg = "The Object is burning";
 	public AudioSource stoveSound;
 	public AudioSource objectReadySound;
-
+	public GameObject smokeEffectPrefab;
+	public GameObject smokeEffect;
 	public int cookTime = 60;
 	public int burnTime = 30;
 
-
+	private bool smokeGenerated = false;
 	private float cookDuration = 0;
 	private bool cooking = false;
 	private bool cooked = false;
@@ -41,6 +42,11 @@ public class StoveCookGame : MonoBehaviour {
 		if (cookDuration > cookTime + burnTime) {
 			CaveChefGameController.GetController ().showMessage (burnMsg);
 			if(Time.time > lastBurned + damageInterval) {
+				if(!smokeGenerated) {
+					smokeEffect = (GameObject) Instantiate(smokeEffectPrefab, cookedObject.transform.position, smokeEffectPrefab.transform.rotation);
+					smokeGenerated = true;
+				}
+
 				lastBurned = Time.time;
 				CaveChefGameController.GetController ().AddPoints (damage);
 			}
@@ -66,6 +72,13 @@ public class StoveCookGame : MonoBehaviour {
 			cookDuration = 0;
 			CaveChefGameController.GetController ().AddPoints(damage*-1);
 			stoveSound.Play ();
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if(other.gameObject == cookedObject) {
+			Destroy(smokeEffect);
+			Destroy(this);
 		}
 	}
 }
