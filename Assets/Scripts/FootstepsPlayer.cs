@@ -17,7 +17,6 @@ public class FootstepsPlayer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collision) {
 
-		Debug.Log (collision.gameObject.tag);
 		if (collision.gameObject.CompareTag("FootPadPresser")) {
 			footstepSound.Play();
 		}

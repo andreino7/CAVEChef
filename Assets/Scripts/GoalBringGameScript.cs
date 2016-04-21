@@ -16,6 +16,9 @@ public class GoalBringGameScript : MonoBehaviour {
 		foreach(GameObject g in obstacles) {
 			g.SetActive(true);
 		}
+        objectToBeBrought.SetActive(true);
+
+       
 	}
 	
 	// Update is called once per frame
@@ -31,7 +34,7 @@ public class GoalBringGameScript : MonoBehaviour {
 			Destroy(before);
 			after.SetActive (true);
 			CaveChefGameController.GetController ().showMessage (endGameDialog);
-			StartCoroutine (ExecuteAfterTime (3));
+			StartCoroutine (ExecuteAfterTime (1));
 
 		}
 	}
@@ -40,7 +43,8 @@ public class GoalBringGameScript : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(time);
 
-		CaveChefGameController.GetController ().nextLevel ();
+        CaveChefGameController.GetController().AddPoints(5);
+        CaveChefGameController.GetController ().nextLevel ();
 		// Code to execute after the delay
 	}
 }

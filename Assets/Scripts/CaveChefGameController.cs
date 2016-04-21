@@ -53,7 +53,7 @@ public class CaveChefGameController : MonoBehaviour {
 			countdown = true;
 			timerCountDownSound.Play ();
 		}
-		if(time <= 0 && hasWon) {
+		if(time <= 0 && !hasWon) {
 			gameOverText.gameObject.SetActive(true);
 			panel.SetActive(true);
 			timerCountDownSound.Stop ();

@@ -5,8 +5,12 @@ public class MovableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        Glower g = GetComponentInChildren<Glower>();
+        if (g != null)
+        {
+            g.enabled=true;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,8 +22,14 @@ public class MovableObject : MonoBehaviour {
 			//transform.localScale = transform.localScale * 1.5;
 			transform.parent = other.gameObject.transform;
 			GetComponent<Rigidbody>().isKinematic = true;
-//			GameController.instance.showCabinet();
-		}
+            //GameController.instance.showCabinet();
+            Glower g = GetComponentInChildren<Glower>();
+            if (g != null)
+            {
+                g.Reset();
+                g.enabled = false;
+            }
+        }
 		if (other.gameObject.CompareTag("GoalObject")){	
 			//transform.localScale = transform.localScale * 1.5;
 			GetComponentInChildren<ParticleSystem>().Play();
