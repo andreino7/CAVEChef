@@ -67,7 +67,14 @@ public class CaveChefGameController : MonoBehaviour {
 	public void nextLevel(){
 		littleWinSound.Play ();
 		level += 1;
-		levels [level].SetActive (true);
+        if (level >= levels.Length)
+        {
+            GameEnded();
+        }
+        else
+        {
+            levels[level].SetActive(true);
+        }
 
 	}
 

@@ -31,6 +31,7 @@ public class KickInCabinetGame : MonoBehaviour {
             Destroy(objectToKick);
             cabinetRotator.rotation = Quaternion.Euler(closedRot);
             CaveChefGameController.GetController().showMessage(endGameDialog);
+            CaveChefGameController.GetController().AddPoints(10);
             gameObject.SetActive(false);
 
             CaveChefGameController.GetController().nextLevel();

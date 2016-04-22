@@ -14,7 +14,8 @@ public class StoveCookGame : MonoBehaviour {
 	public AudioSource objectReadySound;
 	public GameObject smokeEffectPrefab;
 	public GameObject smokeEffect;
-	public int cookTime = 60;
+    public GameObject flameEffect;
+    public int cookTime = 60;
 	public int burnTime = 30;
 
 	private bool smokeGenerated = false;
@@ -29,6 +30,7 @@ public class StoveCookGame : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CaveChefGameController.GetController ().showMessage (startGameDialog);
+        objectToBeBrought.GetComponent<MovableObject>().enabled = true;
 	}
 
 	// Update is called once per frame
@@ -72,12 +74,16 @@ public class StoveCookGame : MonoBehaviour {
 			cookDuration = 0;
 			CaveChefGameController.GetController ().AddPoints(damage*-1);
 			stoveSound.Play ();
-		}
+            flameEffect.SetActive(true);
+
+        }
 	}
 
 	void OnTriggerExit(Collider other) {
 		if(other.gameObject == cookedObject) {
-			Destroy(smokeEffect);
+            CaveChefGameController.GetController().nextLevel();
+            Destroy(smokeEffect);
+            Destroy(flameEffect);
 			Destroy(this);
 		}
 	}

@@ -17,9 +17,10 @@ public class GoalBringGameScript : MonoBehaviour {
 			g.SetActive(true);
 		}
         objectToBeBrought.SetActive(true);
+        objectToBeBrought.GetComponent<MovableObject>().enabled = true;
 
-       
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
