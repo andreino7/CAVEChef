@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class BodyPart {
-	private GameObject bodyPart;
+	protected GameObject bodyPart;
 	private Quaternion partOffset;
 	private Quaternion targetRotation;
-	private string sensor;
+	protected string sensor;
 	private Scaler scaler;
 
 
@@ -17,7 +17,7 @@ public class BodyPart {
 	}
 
 
-	public void UpdateBodyPart() {
+	public virtual void UpdateBodyPart() {
 		bodyPart.transform.position = getReal3D.Input.GetSensor(sensor).position;
 		bodyPart.transform.rotation = getReal3D.Input.GetSensor(sensor).rotation * partOffset;
 	}

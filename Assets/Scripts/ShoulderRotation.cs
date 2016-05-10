@@ -25,7 +25,7 @@ public class ShoulderRotation : MonoBehaviour {
 		//transform.rotation *= targetOffset;
 		//transform.rotation *= Quaternion.FromToRotation(transform.forward, (targetElbow.position - transform.position) - targetOffset);
 		parent.transform.LookAt(targetElbow);
-		parent.transform.localScale = new Vector3((targetElbow.position - transform.position).magnitude / distance, 1f, 1f);
+        parent.transform.localScale = new Vector3(1f, 1f, (targetElbow.position - transform.position).magnitude / distance);
 
 
 	}

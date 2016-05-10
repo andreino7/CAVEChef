@@ -21,6 +21,8 @@ public class CaveChefGameController : MonoBehaviour {
 	private float time = 120f;
 	private int score = 0;
 	public Text winningText;
+    public bool isGameStarted = false;
+    private bool isEnded = false;
 
 
 	private int level = 0;
@@ -32,14 +34,21 @@ public class CaveChefGameController : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		Destroy (welcomePanel, 5);
-		Destroy (welcomeText.gameObject, 5);
-		levels [level].SetActive (true);
+		//levels [level].SetActive (true);
 	}
+
+    public void StartGame()
+    {
+        isGameStarted = true;
+        levels[level].SetActive(true);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		UpdateTime();
+        if (isGameStarted)
+        {
+            UpdateTime();
+        }
 	}
 
 	public static CaveChefGameController GetController(){
@@ -53,9 +62,11 @@ public class CaveChefGameController : MonoBehaviour {
 			countdown = true;
 			timerCountDownSound.Play ();
 		}
-		if(time <= 0 && !hasWon) {
-			gameOverText.gameObject.SetActive(true);
-			panel.SetActive(true);
+		if(time <= 0 && !hasWon && !isEnded) {
+            isEnded = true;
+            StartCoroutine(GameOver());
+			//gameOverText.gameObject.SetActive(true);
+			//panel.SetActive(true);
 			timerCountDownSound.Stop ();
 		}
 	}
@@ -86,13 +97,41 @@ public class CaveChefGameController : MonoBehaviour {
 	public void GameEnded() {
 		hasWon = true;
 		panel.SetActive(true);
-		winningText.text = winningText.text + score;
-		winningText.gameObject.SetActive(true);
+        StartCoroutine(WinningMessage());
+		//winningText.text = winningText.text + score;
+		//winningText.gameObject.SetActive(true);
 		timerCountDownSound.Stop ();
 		winSound.Play();
-
-
 	}
+
+
+    private IEnumerator WinningMessage()
+    {
+        winningText.text = winningText.text + score;
+        winningText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(8f);
+        StartCoroutine(Credits(winningText));
+    }
+
+    private IEnumerator GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        panel.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(Credits(gameOverText));
+    }
+
+
+    private IEnumerator Credits(Text t)
+    {
+        t.text = "Developed by:\n Krishna Bharadwaj\nFilippo Pellolio\nAndrea Rottigni";
+        yield return new WaitForSeconds(4f);
+        t.text = "Text by:\nMarinko Kuljanin";
+        yield return new WaitForSeconds(4f);
+        t.text = "3D models from:\nwww.cgtrader.com\nUnity Asset Store";
+        yield return new WaitForSeconds(4f);
+        t.text = "Press the circle to restart";
+    }
 
 	private void UpdateScore() {
 		scoreText.text = "SCORE: " + score;

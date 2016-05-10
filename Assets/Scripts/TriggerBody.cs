@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class TriggerBody : MonoBehaviour {
@@ -8,6 +9,7 @@ public class TriggerBody : MonoBehaviour {
 	public UpperBodyScaler hipScaler;
 	public BodyScaler bodyScaler;
 	public getRealCameraUpdater getRealUpdater;
+    public GameObject ethanTutorial;
 	public Camera getRealCamera;
 //	public LegMover legMover;
 
@@ -21,16 +23,18 @@ public class TriggerBody : MonoBehaviour {
 		if(CAVE2Manager.GetButtonDown(1, CAVE2Manager.Button.Button3)) {
 			bodyMover.SetTrigger();
 			hipMover.SetTrigger();
-			hipScaler.ScaleUpperBody();
+			//hipScaler.ScaleUpperBody();
 			bodyScaler.ScaleBody();
-
+            if (ethanTutorial != null)
+            {
+                Destroy(ethanTutorial);
+                CaveChefGameController.GetController().StartGame();
+            }
 			//legMover.SetTrigger();
 		}
-
-		if(CAVE2Manager.GetButtonDown(1, CAVE2Manager.Button.Button2)) {
-			if (getRealUpdater){
-				//getRealUpdater.UpdateCameraFromWand();
-			}
-		}
+        if(CAVE2Manager.GetButtonDown(1, CAVE2Manager.Button.Button2))
+        {
+            SceneManager.LoadScene(0);
+        }
 	}
 }

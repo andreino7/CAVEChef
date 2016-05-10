@@ -18,7 +18,7 @@ public class MovableObject : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("Gabber")){	
+		if (other.gameObject.CompareTag("Gabber") && isActiveAndEnabled){	
 			//transform.localScale = transform.localScale * 1.5;
 			transform.parent = other.gameObject.transform;
 			GetComponent<Rigidbody>().isKinematic = true;
@@ -30,7 +30,8 @@ public class MovableObject : MonoBehaviour {
                 g.enabled = false;
             }
         }
-		if (other.gameObject.CompareTag("GoalObject")){	
+        if (other.gameObject.CompareTag("GoalObject") && isActiveAndEnabled)
+        {	
 			//transform.localScale = transform.localScale * 1.5;
 			GetComponentInChildren<ParticleSystem>().Play();
 			Destroy(gameObject,GetComponentInChildren<ParticleSystem>().duration);

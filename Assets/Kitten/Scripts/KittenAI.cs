@@ -44,6 +44,11 @@ public class KittenAI : MonoBehaviour {
 		}
 
 	}
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.collider.gameObject);
+    }
 }
 
 public class PrecStates : IEquatable<PrecStates>{
